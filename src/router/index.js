@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import Message from '../views/Message.vue'
 import MyCar from '../views/MyCar.vue'
 Vue.use(VueRouter)
@@ -8,8 +7,8 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'MyCar',
+    component: MyCar
   },
   {
     path: '/about',

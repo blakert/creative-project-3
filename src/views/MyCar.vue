@@ -3,9 +3,7 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-8">
-        <h3>Notes</h3>
         <h3>Car information</h3>
-        <h3>Your information</h3>
       </div>
       <div class="col-2"></div>
     </div>
@@ -38,9 +36,9 @@
           </template>
           <template v-if="!isEdit">
             <div>
-              <p>{{myCAr.make}} {{ myCar.model}}</p>
-              <p>{{myCar.year}} {{ myCar.miles }}</p>
-              <img :src="myCar.picture" alt="picture of your car" />
+              <p>{{this.myCar.make}} {{ this.myCar.model}}</p>
+              <p>{{this.myCar.year}} {{ this.myCar.miles }}</p>
+              <img :src="this.myCar.picture" alt="picture of your car" />
               <button class="btn btn-toolbar">Edit</button>
             </div>
           </template>
@@ -50,7 +48,12 @@
     </div>
     <div class="row">
       <h4>Notes</h4>
+  </div>
+  <div class="row">
+          
+      </div>
       <div class="addNote">
+          <h4>Add Note</h4>
         <label>
           Title
           <input type="text" v-model="currNote.title" />
@@ -73,7 +76,6 @@
           </div>
       </template>
     </div>
-  </div>
 </template>
 
 <script>
@@ -86,26 +88,19 @@ export default {
   name: "MyCar",
   data() {
     return {
-      isEdit: false,
+      isEdit: true,
       myCar: {
-        make,
-        year,
-        model,
-        miles,
-        picture
-      },
-      myInformation: {
-        fname: null,
-        lname: null,
-        email: null,
-        city: null,
-        country: null
+        make: null,
+        year : null,
+        model : null,
+        miles: null,
+        picture: null
       },
       currNote:{
           title: null,
           body: null,
       }
-    };
+    }
   },
   methods:{
       toggleEdit() {
@@ -119,11 +114,20 @@ export default {
           this.$root.$data.notes.push(JSON.parse(JSON.stringify(this.currNote)));
           this.currNote.title = '';
           this.currNote.body = '';
-    }
+    },
+  },
+  computed:{
+      notes(){
+          return this.$root.$data.notes;
+      }
   }
 };
 </script>
 
 <style scoped>
+.addNote {
+    display: flex;
+    flex-direction: column;
+}
 </style>
 
